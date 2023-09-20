@@ -4,13 +4,14 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <limits.h>
 
 #define OUT_BUF_SIZE 1024
 #define BUF_FREE -1
 
 #define INIT_PARAMS {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
-#define NUL_STR "(null)"
+#define NULL_STR "(null)"
 /**
  * struct parameters - struct for parameters
  *
@@ -53,7 +54,7 @@ typedef struct parameters
 typedef struct specifier
 {
 	char *specifier;
-	int (*f)(va_list, params_t);
+	int (*f)(va_list, params_t *);
 } specifier_t;
 
 /* _printf.c module */
@@ -67,7 +68,7 @@ int (*get_specifier(char *str))(va_list ap, params_t *params);
 int print_func(char *str, va_list ap, params_t *params);
 int get_flag(char *str, params_t *params);
 int get_modifier(char *str, params_t *params);
-char *get_width(char *str, params_t *params, va_list ap);
+char *get_width(char *str, va_list ap, params_t *params);
 
 /* _puts.c module */
 int _puts(char *str);
@@ -81,7 +82,7 @@ int print_percent(va_list ap, params_t *params);
 int print_S(va_list ap, params_t *params);
 
 /* num.c module */
-char *conver(long int num, int base, int flag, params_t *params);
+char *convert(long int num, int base, int flag, params_t *params);
 int print_unsigned(va_list ap, params_t *params);
 int print_address(va_list ap, params_t *params);
 

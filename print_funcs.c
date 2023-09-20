@@ -6,14 +6,14 @@
  *
  * Return: number of characters printed
  */
-int print_char(va_list ap, params_t params)
+int print_char(va_list ap, params_t *params)
 {
 	char padding_ch = ' ';
 	unsigned int padding_iter = 1, count = 0, ch = va_arg(ap, int);
 
 	if (params->minus_flag)
 		count += _putchar(ch);
-	while (padding_itr++ < params->width)
+	while (padding_iter++ < params->width)
 		count += _putchar(padding_ch);
 	if (!params->minus_flag)
 		count += _putchar(ch);
@@ -111,7 +111,7 @@ int print_S(va_list ap, params_t *params)
 		}
 		else
 		{
-			count += _putschar(*str);
+			count += _putchar(*str);
 		}
 	}
 	return (count);
@@ -128,5 +128,5 @@ int print_percent(va_list ap, params_t *params)
 	(void)ap;
 	(void)params;
 
-	return (_putchar("%"));
+	return (_putchar('%'));
 }
