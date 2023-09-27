@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <stdio.h>
 
 #define OUT_BUF_SIZE 1024
 #define BUF_FREE -1
@@ -12,6 +13,9 @@
 #define INIT_PARAMS {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
 #define NULL_STR "(null)"
+
+#define CONVERT_LOWERCASE 1
+#define CONVERT_UNSIGN 2
 /**
  * struct parameters - struct for parameters
  *
@@ -30,19 +34,19 @@
  */
 typedef struct parameters
 {
-	unsigned int unsign;
+	unsigned int unsign	: 1;
 
-	unsigned int plus_flag;
-	unsigned int space_flag;
-	unsigned int zero_flag;
-	unsigned int hashtag_flag;
-	unsigned int minus_flag;
+	unsigned int plus_flag	: 1;
+	unsigned int space_flag	: 1;
+	unsigned int zero_flag	: 1;
+	unsigned int hashtag_flag : 1;
+	unsigned int minus_flag	: 1;
 
 	unsigned int width;
 	unsigned int percision;
 
-	unsigned int h_modifier;
-	unsigned int l_modifier;
+	unsigned int h_modifier	: 1;
+	unsigned int l_modifier	: 1;
 } params_t;
 
 /**
@@ -78,8 +82,8 @@ int _putchar(int c);
 int print_char(va_list ap, params_t *params);
 int print_int(va_list ap, params_t *params);
 int print_string(va_list ap, params_t *params);
-int print_percent(va_list ap, params_t *params);
 int print_S(va_list ap, params_t *params);
+int print_percent(va_list ap, params_t *params);
 
 /* num.c module */
 char *convert(long int num, int base, int flag, params_t *params);

@@ -51,6 +51,7 @@ int print_string(va_list ap, params_t *params)
 	char padding_ch = ' ';
 	unsigned int padding_iter = 0, i = 0, count = 0, j;
 
+	(void)params;
 	switch ((int)(!str))
 	case 1:
 		str = NULL_STR;

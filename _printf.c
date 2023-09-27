@@ -37,7 +37,8 @@ int _printf(const char *format, ...)
 			p++;
 		if (!get_specifier(p))
 		{
-			n += print_from_to(start, p, params.l_modifier || params.h_modifier ? p - 1 : 0);
+			n += print_from_to(start, p,
+				       params.l_modifier || params.h_modifier ? p - 1 : 0);
 		}
 		else
 			n += print_func(p, ap, &params);
